@@ -1,0 +1,269 @@
+|playbus1
+disp0[0] << sevenseg:s0.seg
+disp0[1] << sevenseg:s0.seg
+disp0[2] << sevenseg:s0.seg
+disp0[3] << sevenseg:s0.seg
+disp0[4] << sevenseg:s0.seg
+disp0[5] << sevenseg:s0.seg
+disp0[6] << sevenseg:s0.seg
+disp1[0] << sevenseg:s1.seg
+disp1[1] << sevenseg:s1.seg
+disp1[2] << sevenseg:s1.seg
+disp1[3] << sevenseg:s1.seg
+disp1[4] << sevenseg:s1.seg
+disp1[5] << sevenseg:s1.seg
+disp1[6] << sevenseg:s1.seg
+disp2[0] << sevenseg:s2.seg
+disp2[1] << sevenseg:s2.seg
+disp2[2] << sevenseg:s2.seg
+disp2[3] << sevenseg:s2.seg
+disp2[4] << sevenseg:s2.seg
+disp2[5] << sevenseg:s2.seg
+disp2[6] << sevenseg:s2.seg
+disp3[0] << sevenseg:s3.seg
+disp3[1] << sevenseg:s3.seg
+disp3[2] << sevenseg:s3.seg
+disp3[3] << sevenseg:s3.seg
+disp3[4] << sevenseg:s3.seg
+disp3[5] << sevenseg:s3.seg
+disp3[6] << sevenseg:s3.seg
+sw0[0] => sw0[0].IN1
+sw0[1] => sw0[1].IN1
+sw0[2] => sw0[2].IN1
+sw0[3] => sw0[3].IN1
+sw1[0] => sw1[0].IN1
+sw1[1] => sw1[1].IN1
+sw1[2] => sw1[2].IN1
+sw2[0] => sw2[0].IN1
+sw2[1] => sw2[1].IN1
+sw2[2] => sw2[2].IN1
+n_clk => clk.IN4
+
+
+|playbus1|contention:c0
+contend <= contend.DB_MAX_OUTPUT_PORT_TYPE
+Z <= Z.DB_MAX_OUTPUT_PORT_TYPE
+RAMO => Z.IN0
+RAMO => contend.IN0
+RAMO => contend.IN0
+ROMO => Z.IN1
+ROMO => contend.IN1
+ROMO => contend.IN0
+SWBEN => Z.IN1
+SWBEN => contend.IN1
+SWBEN => contend.IN1
+
+
+|playbus1|eprom:e0
+data[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
+data[1] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
+data[2] <= data[2].DB_MAX_OUTPUT_PORT_TYPE
+data[3] <= data[3].DB_MAX_OUTPUT_PORT_TYPE
+address[0] => prom.RADDR
+address[1] => prom.RADDR1
+address[2] => prom.RADDR2
+OE => data.IN0
+CS => data.IN1
+
+
+|playbus1|ram:r0
+data[0] <> data[0]
+data[1] <> data[1]
+data[2] <> data[2]
+data[3] <> data[3]
+address[0] => mem.waddr_a[0].DATAIN
+address[0] => mem.WADDR
+address[0] => mem.RADDR
+address[1] => mem.waddr_a[1].DATAIN
+address[1] => mem.WADDR1
+address[1] => mem.RADDR1
+address[2] => mem.waddr_a[2].DATAIN
+address[2] => mem.WADDR2
+address[2] => mem.RADDR2
+CS => data.IN0
+CS => always0.IN0
+WE => always0.IN1
+OE => data.IN1
+clk => mem.we_a.CLK
+clk => mem.waddr_a[2].CLK
+clk => mem.waddr_a[1].CLK
+clk => mem.waddr_a[0].CLK
+clk => mem.data_a[3].CLK
+clk => mem.data_a[2].CLK
+clk => mem.data_a[1].CLK
+clk => mem.data_a[0].CLK
+clk => mem.CLK0
+
+
+|playbus1|buffer:b0
+data[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
+data[1] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
+data[2] <= data[2].DB_MAX_OUTPUT_PORT_TYPE
+data[3] <= data[3].DB_MAX_OUTPUT_PORT_TYPE
+data_in[0] => data[0].DATAIN
+data_in[1] => data[1].DATAIN
+data_in[2] => data[2].DATAIN
+data_in[3] => data[3].DATAIN
+OE => data.IN0
+CS => data.IN1
+
+
+|playbus1|register:l0
+data_out[0] <= data_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[1] <= data_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[2] <= data_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_in[0] => data_out[0]~reg0.DATAIN
+data_in[1] => data_out[1]~reg0.DATAIN
+data_in[2] => data_out[2]~reg0.DATAIN
+OE => data_out[0]~reg0.ENA
+OE => data_out[1]~reg0.ENA
+OE => data_out[2]~reg0.ENA
+clk => data_out[0]~reg0.CLK
+clk => data_out[1]~reg0.CLK
+clk => data_out[2]~reg0.CLK
+
+
+|playbus1|register:l1
+data_out[0] <= data_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[1] <= data_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[2] <= data_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_in[0] => data_out[0]~reg0.DATAIN
+data_in[1] => data_out[1]~reg0.DATAIN
+data_in[2] => data_out[2]~reg0.DATAIN
+OE => data_out[0]~reg0.ENA
+OE => data_out[1]~reg0.ENA
+OE => data_out[2]~reg0.ENA
+clk => data_out[0]~reg0.CLK
+clk => data_out[1]~reg0.CLK
+clk => data_out[2]~reg0.CLK
+
+
+|playbus1|register:l2
+data_out[0] <= data_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[1] <= data_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[2] <= data_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[3] <= data_out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_in[0] => data_out[0]~reg0.DATAIN
+data_in[1] => data_out[1]~reg0.DATAIN
+data_in[2] => data_out[2]~reg0.DATAIN
+data_in[3] => data_out[3]~reg0.DATAIN
+OE => data_out[0]~reg0.ENA
+OE => data_out[1]~reg0.ENA
+OE => data_out[2]~reg0.ENA
+OE => data_out[3]~reg0.ENA
+clk => data_out[0]~reg0.CLK
+clk => data_out[1]~reg0.CLK
+clk => data_out[2]~reg0.CLK
+clk => data_out[3]~reg0.CLK
+
+
+|playbus1|sevenseg:s0
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+value[0] => Decoder0.IN3
+value[1] => Decoder0.IN2
+value[2] => Decoder0.IN1
+value[3] => Decoder0.IN0
+Z => Decoder0.IN4
+contend => Decoder0.IN5
+
+
+|playbus1|sevenseg:s1
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+value[0] => Decoder0.IN3
+value[1] => Decoder0.IN2
+value[2] => Decoder0.IN1
+value[3] => Decoder0.IN0
+Z => Decoder0.IN4
+contend => Decoder0.IN5
+
+
+|playbus1|sevenseg:s2
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+value[0] => Decoder0.IN3
+value[1] => Decoder0.IN2
+value[2] => Decoder0.IN1
+value[3] => Decoder0.IN0
+Z => Decoder0.IN4
+contend => Decoder0.IN5
+
+
+|playbus1|sevenseg:s3
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+value[0] => Decoder0.IN3
+value[1] => Decoder0.IN2
+value[2] => Decoder0.IN1
+value[3] => Decoder0.IN0
+Z => Decoder0.IN4
+contend => Decoder0.IN5
+
+
+|playbus1|controller:asm
+clk => present_state[0].CLK
+clk => present_state[1].CLK
+clk => present_state[2].CLK
+clk => present_state[3].CLK
+clk => present_state[4].CLK
+clk => present_state[5].CLK
+clk => present_state[6].CLK
+clk => present_state[7].CLK
+clk => present_state[8].CLK
+clk => present_state[9].CLK
+clk => present_state[10].CLK
+clk => present_state[11].CLK
+clk => present_state[12].CLK
+clk => present_state[13].CLK
+clk => present_state[14].CLK
+clk => present_state[15].CLK
+clk => present_state[16].CLK
+clk => present_state[17].CLK
+clk => present_state[18].CLK
+clk => present_state[19].CLK
+clk => present_state[20].CLK
+clk => present_state[21].CLK
+clk => present_state[22].CLK
+clk => present_state[23].CLK
+clk => present_state[24].CLK
+clk => present_state[25].CLK
+clk => present_state[26].CLK
+clk => present_state[27].CLK
+clk => present_state[28].CLK
+clk => present_state[29].CLK
+clk => present_state[30].CLK
+clk => present_state[31].CLK
+func[0] => Equal0.IN1
+func[0] => Equal1.IN31
+func[1] => Equal0.IN31
+func[1] => Equal1.IN0
+func[2] => Equal0.IN0
+func[2] => Equal1.IN30
+ROMO <= <GND>
+RAMO <= <GND>
+RAMW <= <GND>
+SWBEN <= SWBEN.DB_MAX_OUTPUT_PORT_TYPE
+LEDLTCH <= LEDLTCH.DB_MAX_OUTPUT_PORT_TYPE
+
+
